@@ -20,7 +20,7 @@
 |user_id|integer|null: false,foreign_key: true|
 
 ### Association
-- belongs_to :group
+- belongs_to :massage
 - has_many :users, though: :groups_users
 
 
