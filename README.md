@@ -8,6 +8,7 @@
 
 ### Association
 - has_many :messages
+- has_manu :groups_users
 - has_many :groups, though: :groups_users
 
 
@@ -16,11 +17,11 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|null: false|
-|user_id|integer|null: false,foreign_key: true|
+|name|string|null: false|
 
 ### Association
-- belongs_to :massage
+- has_many :massage
+- has_many :groups_users
 - has_many :users, though: :groups_users
 
 
@@ -40,7 +41,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|body|string|null: false|
+|body|text|null: false|
+|image|string|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
