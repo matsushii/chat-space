@@ -20,7 +20,7 @@
 |name|string|null: false|
 
 ### Association
-- has_many :massages
+- has_many :messages
 - has_many :groups_users
 - has_many :users, though: :groups_users
 
@@ -37,7 +37,7 @@
 - belongs_to :user
 
 
-## massagesテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
