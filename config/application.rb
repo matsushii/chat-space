@@ -10,3 +10,13 @@ module ChatSpace
   class Application < Rails::Application
   end
 end
+
+module PairsLike
+  class Application < Rails::Application
+    # ここから下を追加
+    config.generators do |g|
+      g.helper false
+      g.test_framework false
+    end
+  end
+end
