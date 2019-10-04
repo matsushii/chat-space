@@ -1,24 +1,25 @@
 .wrapper
-  .chat-side
-    .side-header
-      .side-header__box
-        .side-header__box__user-name
-          = "text-user"
-        %ul.side-header__box__menu
-          %li.side-header__box__menu__new-group
-            = link_to "",class: "side-header__box__menu__new-group__btn" do
-              .fa.fa-edit
-          %li.side-header__box__menu__edit-user
-            = link_to "",class: "side-header__box__menu__edit-user__btn" do
-              .fa.fa-cog
-    .groups
-      -# - @groups.each do |group|
-      -#   = render @group
-      .group
-        %p.group__group-name
-          ="sample-group"
-        %p.group__latest-message
-          ="hello"
+  = render "devise/shared/side_bar"
+  -# .chat-side
+  -#   .side-header
+  -#     .side-header__box
+  -#       .side-header__box__user-name
+  -#         = "text-user"
+  -#       %ul.side-header__box__menu
+  -#         %li.side-header__box__menu__new-group
+  -#           = link_to "",class: "side-header__box__menu__new-group__btn" do
+  -#             .fa.fa-edit
+  -#         %li.side-header__box__menu__edit-user
+  -#           = link_to "",class: "side-header__box__menu__edit-user__btn" do
+  -#             .fa.fa-cog
+  -#   .groups
+  -#     -# - @groups.each do |group|
+  -#     -#   = render @group
+  -#     .group
+  -#       %p.group__group-name
+  -#         ="sample-group"
+  -#       %p.group__latest-message
+  -#         ="hello"
 
   .chat-main
     .main-header
