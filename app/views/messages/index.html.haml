@@ -1,59 +1,40 @@
-.wrapper
-  = render "devise/shared/side_bar"
-  -# .chat-side
-  -#   .side-header
-  -#     .side-header__box
-  -#       .side-header__box__user-name
-  -#         = "text-user"
-  -#       %ul.side-header__box__menu
-  -#         %li.side-header__box__menu__new-group
-  -#           = link_to "",class: "side-header__box__menu__new-group__btn" do
-  -#             .fa.fa-edit
-  -#         %li.side-header__box__menu__edit-user
-  -#           = link_to "",class: "side-header__box__menu__edit-user__btn" do
-  -#             .fa.fa-cog
-  -#   .groups
-  -#     -# - @groups.each do |group|
-  -#     -#   = render @group
-  -#     .group
-  -#       %p.group__group-name
-  -#         ="sample-group"
-  -#       %p.group__latest-message
-  -#         ="hello"
+.notification
+  .notice
 
-  .chat-main
-    .main-header
-      .main-header__left-box
-        .main-header__left-box__current-group
-          ="text-group"
-        %ul.main-header__left-box__member-list
-          ="Member : "
-          .main-header__left-box__member-list__member
-            ="user"
-      .main-header__edit
-        = link_to "",class: "main-header__edit__btn" do
-          ="Edit"
-          
+.wrapper
+  =render partial: "shared/side_bar"
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          = @group.name
+        %ul.left-header__members
+          Member：
+          %li.member
+            - @group.group_users.each do |group_user|
+              = group_user.user.name
+      .right-header
+        %a.right-header__button
+          = link_to edit_group_path(@group.id) do
+            Edit
     .messages
       .message
-        .message__upper-info
-          %p.message__upper-info__talker
-            ="user"
-          %p.message__upper-info__date
-            ="2019/10/13 9:00:00"
-        %p.message__text
-          ="text"
-      -# - @messages.each do |message|
-      -#   = render @message
-
+        - @messages.each do |message|
+          .upper-message
+            .upper-message__user-name
+              = message.user.name
+            .upper-message__date
+              = message.created_at.strftime("%Y/%m/%d %H:%M")
+          .lower-message
+            - if message.content.present?
+              %p.lower-message__content
+                = message.content
+            = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
     .form
-      %form.new-message{action: "", method: "post"}
-        .input-box
-          %input.input-box__text{type: "text", placeholder: " type a message"}
-          %label.input-box__image{for:"message-image"}
-            %i.fa.fa-picture-o
-            %input.input-box__image__file{type:"file", style:"display:none;", id:"message-image"} 
-        %input.submit-btn{type: "submit", name: "commit", value: "Send"} 
-
-
-
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', id: 'new_message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
