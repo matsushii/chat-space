@@ -1,6 +1,7 @@
 .chat {
   width: calc(100% - 300px);
   float: left;
+  overflow: hidden;
   .header {
     box-sizing: border-box;
     height: 100px;
@@ -13,7 +14,6 @@
         margin-top: 35px;
       }
       &__members {
-        // @include flexbox;
         color: $light_gray;
         font-size: 12px;
         margin-top: 15px;
@@ -24,6 +24,8 @@
       }
     }
     .right-header {
+      position: absolute;
+      right: 40px;
       border: 1px solid $light_blue;
       color: $light_blue;
       float: right;
@@ -41,8 +43,9 @@
   .messages {
     background-color: #FAFAFA;
     box-sizing: border-box;
-    padding: 46px 40px 0;
-    height: calc(100vh - 100px - 90px);
+    padding: 46px 40px;
+    height: calc(100vh - 190px);
+    overflow: scroll;
     .message {
       .upper-message {
         display: flex;
@@ -72,31 +75,34 @@
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
-    padding: 20px 50px 20px 40px;
+    padding: 20px 40px 20px 40px;
     &__message {
       border: none;
       float: left;
       height: 50px;
-      width: calc(100% - 150px);
+      width: calc(100% - 160px);
+      padding-left: 10px;
     }
-    &__mask {
-      background-color: $white;
-      float: left;
-      height: 50px;
-      padding-right: 10px;
-      &__image {
-        font-size: 20px;
-        line-height: 50px;
+      &__mask {
+        float: left;
+        background-color: $white;
+        height: 50px;
+        padding-right: 10px;
+        &__image {
+          font-size: 20px;
+          line-height: 50px;
+        }
+        .hidden {
+          display: none;
+        }
       }
-      .hidden {
-        display: none;
-      }
-    }
     &__submit {
+      float: right;
+      position: absolute;
+      right: 40px;
       background-color: $light_blue;
       border: none;
       color: $white;
-      float: right;
       font-size: 16px;
       height: 50px;
       margin-left: 15px;

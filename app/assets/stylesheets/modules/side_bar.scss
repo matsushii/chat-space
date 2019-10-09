@@ -3,6 +3,8 @@
   color: $white;
   width: 300px;
   float: left;
+  height: 100%;
+  overflow: hidden;
   .header {
     background-color: $side_blue_dark;
     height: 100px;

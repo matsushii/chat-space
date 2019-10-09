@@ -1,13 +1,13 @@
 .notification
   .notice
 
-.wrapper
-  =render partial: "shared/side_bar"
+.wrapper  
+  =render partial: "shared/side_bar"  #サイドバーの呼び出し
   .chat
     .header
       .left-header
         .left-header__title
-          = @group.name
+          = @group.name #groupクラスのnameカラム
         %ul.left-header__members
           Member：
           %li.member
@@ -18,8 +18,8 @@
           = link_to edit_group_path(@group.id) do
             Edit
     .messages
-      .message
-        - @messages.each do |message|
+      - @messages.each do |message|
+        .message
           .upper-message
             .upper-message__user-name
               = message.user.name
@@ -32,7 +32,7 @@
             = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
     .form
       = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', id: 'new_message', placeholder: 'type a message'
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .form__mask
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
