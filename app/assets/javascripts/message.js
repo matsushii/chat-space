@@ -38,7 +38,7 @@ $(function(){
     })
     .fail(function(data){
       alert('エラーが発生したためメッセージは送信できませんでした。');
-      $(".form__message").val("");
+      $("form")[0].reset();
       $(".form__submit").prop('disabled', false);
     })
   })
