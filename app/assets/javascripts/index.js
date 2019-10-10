@@ -9,6 +9,7 @@ $(function() {
     user_list.append(html);
   }
 
+  function appendErrMsgToHTML(msg) {
     var html = `<div class="chat-gruop-user clesrfix">
                   <p class="chat-group-user__name">${msg}</p>
                 </div>`
