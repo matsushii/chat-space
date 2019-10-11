@@ -1,8 +1,6 @@
 .notification
   .notice
-
-.wrapper  
-  =render partial: "shared/side_bar" 
+  =render partial: "shared/side_bar"
   .chat
     .header
       .left-header
@@ -11,10 +9,10 @@
         %ul.left-header__members
           Member：
           %li.member
-            - @group.group_users.each do |group_user|
-              = group_user.user.name
+            - @group.users.each do |user|
+              = user.name
       .right-header
-        %a.right-header__button
+        .right-header__button
           = link_to edit_group_path(@group.id) do
             Edit
     .messages
