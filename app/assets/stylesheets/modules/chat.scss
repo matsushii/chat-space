@@ -43,8 +43,8 @@
   .messages {
     background-color: #FAFAFA;
     box-sizing: border-box;
-    padding: 46px 40px;
-    height: calc(100vh - 190px);
+    padding: 46px 40px 0;
+    height: calc(100vh - 100px - 90px);
     overflow: scroll;
     .message {
       .upper-message {
@@ -75,7 +75,7 @@
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
-    padding: 20px 40px 20px 40px;
+    padding: 20px 40px;
     &__message {
       border: none;
       float: left;
@@ -84,8 +84,8 @@
       padding-left: 10px;
     }
       &__mask {
-        float: left;
         background-color: $white;
+        float: left;
         height: 50px;
         padding-right: 10px;
         &__image {
@@ -95,9 +95,8 @@
         .hidden {
           display: none;
         }
-      }
+       }
     &__submit {
-      float: right;
       position: absolute;
       right: 40px;
       background-color: $light_blue;
