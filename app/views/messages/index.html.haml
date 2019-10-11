@@ -2,12 +2,12 @@
   .notice
 
 .wrapper  
-  =render partial: "shared/side_bar"  #サイドバーの呼び出し
+  =render partial: "shared/side_bar"
   .chat
     .header
       .left-header
         .left-header__title
-          = @group.name #groupクラスのnameカラム
+          = @group.name 
         %ul.left-header__members
           Member：
           %li.member
