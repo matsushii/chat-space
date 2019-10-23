@@ -8,18 +8,18 @@ Bundler.require(*Rails.groups)
 
 module ChatSpace
   class Application < Rails::Application
-    config.i18n.default_locale = :ja
-    config.time_zone = 'Tokyo'
-    config.active_record.default_timezone = :local 
-  end
-end
-
-module PairsLike
-  class Application < Rails::Application
-    # ここから下を追加
     config.generators do |g|
       g.helper false
       g.test_framework false
     end
+    config.i18n.default_locale = :ja
+    config.active_record.default_timezone = :local
+    config.time_zone = 'Tokyo'
   end
+end
+
+begin
+  Time.zone = TZInfo::Country.get('JP').zone_identifiers.first
+rescue
+  Time.zone = 'Asia/Tokyo'
 end
