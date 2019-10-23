@@ -1,13 +1,14 @@
 $(function(){
   function buildHTML(message){
-    insertImage = (message.image.url) ? `<img src="${message.image.url}">` : "";
+    var insertImage = (message.image) ? `<img src="${message.image}">` : "";
+    var date = new Date(message.created_at)
     var html = `<div class="message" data-id = "${message.id}">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
                       ${message.user_name}
                     </div>
                     <div class="upper-message__date">
-                      ${message.created_at}
+                      ${date.toLocaleString()}
                     </div>
                   </div>
                   <div class="lower-message">
@@ -24,7 +25,6 @@ $(function(){
     $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight }, 500);
   }
 
-
   $('#new_message').on('submit', function(e){
     e.preventDefault(); 
     var formdata = new FormData(this);
@@ -40,12 +40,13 @@ $(function(){
     .done(function (data) {
       var html = buildHTML(data);
       $('.messages').append(html);
-      ScrollToNewMessage();
       $("form")[0].reset();
       $(".form__submit").prop('disabled', false);
+      ScrollToNewMessage();
     })
     .fail(function(data){
       alert('エラーが発生したためメッセージは送信できませんでした。');
+      $(".form__submit").prop('disabled', false);
     });
   });
 
@@ -64,9 +65,9 @@ $(function(){
           if (message.id > last_message_id) {
             insertHTML += buildHTML(message); 
             $('.messages').append(insertHTML);
-            ScrollToNewMessage();  
           }
         });
+        ScrollToNewMessage();  
       })
       .fail(function() {  
         alert("自動更新に失敗しました")
