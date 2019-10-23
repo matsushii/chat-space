@@ -36,10 +36,10 @@ $(function() {
         data: {keyword: input},
         dataType: 'json'
       })
-      .done(function(user) {
+      .done(function(users) {
         $("#user-search-result").empty();
-        if (user.length !== 0) {
-          user.forEach(function(user){
+        if (users.length !== 0) {
+          users.forEach(function(user){
             appendUsers(user);
           });
         }
@@ -57,10 +57,10 @@ $(function() {
           var name = $(this).attr("data-user-name");
           var user_id = $(this).attr("data-user-id");
           $(this).parent().remove();
-            appendMembers(name, user_id);
+          appendMembers(name, user_id);
       });
       $(document).on("click", '.user-search-remove', function () {
-          $(this).parent().remove();
+        $(this).parent().remove();
       });
     });
   }); 
