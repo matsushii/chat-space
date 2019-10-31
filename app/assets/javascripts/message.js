@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function () {
   function buildHTML(message){
     var insertImage = (message.image) ? `<img src="${message.image}">` : "";
     var date = new Date(message.created_at)
@@ -42,7 +42,7 @@ $(function(){
       $('.messages').append(html);
       $("form")[0].reset();
       $(".form__submit").prop('disabled', false);
-      ScrollToNewMessage();
+      ScrollToNewMessage();  
     })
     .fail(function(data){
       alert('エラーが発生したためメッセージは送信できませんでした。');
@@ -59,22 +59,22 @@ $(function(){
         dataType: 'json',
         data: {id: last_message_id}
       })
-      .done(function (messages) {
-        var insertHTML = '';
-        messages.forEach(function(message) {
-          if (message.id > last_message_id) {
-            insertHTML += buildHTML(message); 
-            $('.messages').append(insertHTML);
-          }
+        .done(function (messages) {
+          var insertHTML = '';
+          messages.forEach(function(message) {
+            if (message.id > last_message_id) {
+              insertHTML += buildHTML(message); 
+              $('.messages').append(insertHTML);
+            }
+          });
+          ScrollToNewMessage();  
+        })
+        .fail(function() {  
+          alert("自動更新に失敗しました")
         });
-        ScrollToNewMessage();  
-      })
-      .fail(function() {  
-        alert("自動更新に失敗しました")
-      })
+    } else {
+      clearInterval(interval)
     }
   }
   setInterval(reloadMessages, 5000);
 });
-
-
