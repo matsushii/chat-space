@@ -59,22 +59,20 @@ $(document).on('turbolinks:load', function () {
         dataType: 'json',
         data: {id: last_message_id}
       })
-        .done(function (messages) {
-          var insertHTML = '';
-          messages.forEach(function(message) {
-            if (message.id > last_message_id) {
-              insertHTML += buildHTML(message); 
-              $('.messages').append(insertHTML);
-            }
-          });
-          ScrollToNewMessage();  
-        })
-        .fail(function() {  
-          alert("自動更新に失敗しました")
+      .done(function (messages) {
+        var insertHTML = '';
+        messages.forEach(function(message) {
+          if (message.id > last_message_id) {
+            insertHTML += buildHTML(message); 
+          }
         });
-    } else {
-      clearInterval(interval)
+        $('.messages').append(insertHTML);
+        ScrollToNewMessage();  
+      })
+      .fail(function() {  
+        alert("自動更新に失敗しました")
+      })
     }
-  }
+  } 
   setInterval(reloadMessages, 5000);
 });
